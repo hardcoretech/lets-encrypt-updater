@@ -9,8 +9,8 @@ RUN apt-get update \
         git \
         curl \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /etc/cron.daily/*
-    && sed -i 's/session    required     pam_loginuid.so/#session    required     pam_loginuid.so/' /etc/pam.d/cron \
+    && rm -rf /etc/cron.daily/* \
+    && sed -i 's/session    required     pam_loginuid.so/#session    required     pam_loginuid.so/' /etc/pam.d/cron
 
 # Install dehydrated (letsencrypt client) & dns-lexicon
 RUN git clone --depth 1 https://github.com/lukas2511/dehydrated.git /srv/dehydrated \
