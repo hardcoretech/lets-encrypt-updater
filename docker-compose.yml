@@ -1,0 +1,40 @@
+version: "3.3"
+services:
+    lets-encrypt-updater:
+        build: .
+        image: hardcore/lets-encrypt-updater
+        container_name: lets-encrypt-updater
+
+        volumes:
+            # ex: "*.example.com > star_example_com"
+            - type: bind
+              source: ./config/domains.txt
+              target: /srv/dehydrated/domains.txt
+              read_only: true
+
+            # need include: config & credentials 
+            - type: bind
+              source: ./config/aws/
+              target: /root/.aws/
+              read_only: true
+
+            # output
+            - type: bind
+              source: ./accounts/
+              target: /srv/dehydrated/accounts/
+
+            # output
+            - type: bind
+              source: ./certs/
+              target: /srv/dehydrated/certs/
+
+            # ==== DEBUG ====
+            # uncomment below for debug on ACME stage environment
+            #- type: bind
+            #  source: ./config/dehydrated.stage.config
+            #  target: /etc/dehydrated/config
+            #  read_only: true
+
+        environment:
+            PROVIDER: "route53"
+

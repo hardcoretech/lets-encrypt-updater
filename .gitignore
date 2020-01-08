@@ -1,0 +1,4 @@
+accounts/
+certs/
+config/aws/
+config/domains.txt

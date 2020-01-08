@@ -1,0 +1,4 @@
+@reboot env - `cat /etc/environment` /srv/dehydrated/dehydrated --cron --hook /srv/dehydrated/dehydrated.default.sh --challenge dns-01 >> /var/log/cron
+# for skip renew in 30 days
+# execute at every month 1st, 15th day
+22 0 1,15 * * env - `cat /etc/environment` /srv/dehydrated/dehydrated --cron --hook /srv/dehydrated/dehydrated.default.sh --challenge dns-01 >> /var/log/cron
