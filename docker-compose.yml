@@ -2,6 +2,7 @@ version: "3.3"
 services:
     lets-encrypt-updater:
         build: .
+        restart: always
         image: hardcore/lets-encrypt-updater
         container_name: lets-encrypt-updater
 
